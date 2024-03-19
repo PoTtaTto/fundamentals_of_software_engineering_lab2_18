@@ -1,0 +1,12 @@
+[
+    {
+        "num": 1,
+        "destination": "Ставрополь",
+        "start_time": "17:00"
+    },
+    {
+        "num": 2,
+        "destination": "Москва",
+        "start_time": "18:40"
+    }
+]
