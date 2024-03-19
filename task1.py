@@ -4,11 +4,13 @@
 
 # Standard
 import os
-import sys
 import argparse
 from random import randint
 import json
 import jsonschema
+
+# Third-party
+from dotenv import load_dotenv
 
 
 def add_train(trains, num, destination, start_time):
@@ -185,15 +187,8 @@ def main(command_line=None):
 
     args = parser.parse_args(command_line)
 
-    # Получить имя файла
-    data_file = args.data
-    if not data_file:
-        data_file = os.environ.get('TRAINS_DATA')
-    if not data_file:
-        print('The data file name is absent', file=sys.stderr)
-        sys.exit(1)
-
     is_dirty = False
+    data_file = os.getenv('TRAINS_DATA')
     if os.path.exists(data_file):
         trains = load_trains(data_file)
     else:
@@ -220,5 +215,5 @@ def main(command_line=None):
 
 
 if __name__ == '__main__':
-    os.environ.setdefault('TRAINS_DATA', 'trains.json')
+    load_dotenv()
     main()
